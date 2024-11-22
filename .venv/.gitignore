@@ -1,3 +1,3 @@
-/.venv/Scripts/pyvenv.cfg
+/.venv/pyvenv.cfg
 /.venv/Lib/
-
+*.cfg

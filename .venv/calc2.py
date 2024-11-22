@@ -148,6 +148,8 @@ class Calculator:
         self.update_cur_label()
 
     def op_press(self, op):
+        if self.total_eq and self.total_eq[-1] == "=":
+            self.total_eq = ""
         self.total_eq += self.current_eq + " "
         self.total_eq += str(op) + " "
         self.update_total_label()
@@ -165,19 +167,25 @@ class Calculator:
         self.update_cur_label()
 
     def squared_press(self):
-        ans = int(self.current_eq)**2
+        ans = eval(self.current_eq)**2
         self.current_eq = str(ans)
         self.update_cur_label()
 
     def sqrt_press(self):
-        ans = str(int(self.current_eq)**0.5)
+        ans = str(eval(self.current_eq)**0.5)
         if ans[::-1][:2][::-1] == ".0":
             ans = ans[:-2]
+
+        if len(ans) > 13 and "." in ans:
+            ans = round(float(ans), 11)
+            ans = str(ans)
 
         self.current_eq = ans
         self.update_cur_label()
 
     def power_press(self):
+        if self.total_eq and self.total_eq[-1] == "=":
+            self.total_eq = ""
         self.total_eq += self.current_eq + " ^ "
         self.current_eq = ""
         self.update_cur_label()
