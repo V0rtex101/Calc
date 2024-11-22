@@ -177,7 +177,8 @@ class Calculator:
             ans = ans[:-2]
 
         if len(ans) > 13 and "." in ans:
-            ans = round(float(ans), 11)
+            index = ans.find(".")
+            ans = round(float(ans), 12 - index)
             ans = str(ans)
 
         self.current_eq = ans
@@ -221,7 +222,8 @@ class Calculator:
                 ans = ans[:-2]
 
             if len(ans) > 13 and "." in ans:
-                ans = round(float(ans), 11)
+                index = ans.find(".")
+                ans = round(float(ans), 12 - index)
                 ans = str(ans)
 
             self.current_eq = ans
